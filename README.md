@@ -1,119 +1,139 @@
-# Telecom Customer Churn Analysis — Power BI Dashboard
+# Black Friday Purchase Predictor — XGBoost + Streamlit
 
-> An end-to-end business intelligence dashboard analyzing customer churn patterns in the telecom industry, built to surface actionable retention insights through interactive visualizations.
+> An end-to-end Machine Learning project that predicts customer purchase amounts during Black Friday sales, combining in-depth EDA, XGBoost regression modeling, and a real-time Streamlit web application.
 
-[![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?style=flat&logo=powerbi&logoColor=black)](https://github.com/Shubham1919284/Telecom-Churn-Dashboard)
-[![DAX](https://img.shields.io/badge/DAX-Measures%20%26%20KPIs-0078D4?style=flat)](https://github.com/Shubham1919284/Telecom-Churn-Dashboard)
-[![Status](https://img.shields.io/badge/Status-Completed-28a745?style=flat)](https://github.com/Shubham1919284/Telecom-Churn-Dashboard)
+[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python&logoColor=white)](https://github.com/Shubham1919284/black-friday-purchase-prediction)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://github.com/Shubham1919284/black-friday-purchase-prediction)
+[![XGBoost](https://img.shields.io/badge/XGBoost-Regression-189AB4?style=flat)](https://github.com/Shubham1919284/black-friday-purchase-prediction)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Pipeline-F7931E?style=flat&logo=scikitlearn&logoColor=white)](https://github.com/Shubham1919284/black-friday-purchase-prediction)
+[![Status](https://img.shields.io/badge/Status-Completed-28a745?style=flat)](https://github.com/Shubham1919284/black-friday-purchase-prediction)
 
 ---
 
-## Dashboard Preview
+## App Preview
 
-![Telecom Churn Analysis Dashboard](https://github.com/Shubham1919284/Telecom-Churn-Dashboard/blob/9ede81c84a3463145f4f6df3c2d4d5862e66c57c/Telecom%20Churn%20Analysis%20Dashboard--.png)
+> Enter customer demographics and product details — get an instant predicted purchase amount.
+
+![App Screenshot](https://github.com/Shubham1919284/black-friday-purchase-prediction/blob/main/app_preview.png)
 
 ---
 
 ## Project Objective
 
-This project explores and visualizes the key factors driving customer churn in a telecom company. The dashboard enables business stakeholders to:
+Black Friday sales generate massive transaction volumes. This project uses historical purchase data to build a regression model that predicts how much a customer is likely to spend — based on who they are and what they are buying.
 
-- Identify **which customers are at risk of leaving and why**
-- Uncover **demographic and behavioral churn patterns**
-- Support **data-driven retention strategy decisions**
-
----
-
-## Key Findings
-
-| Metric | Value |
-|--------|-------|
-| Overall Churn Rate | ~26.54% |
-| Highest Churn Segment | Month-to-month contract holders |
-| Most Used Internet Service | Fiber Optic (43.96%) |
-| Lowest Churn Payment Method | Auto-pay (Credit Card / Bank Transfer) |
-| Critical Churn Window | Customers with tenure < 10 months |
-| Gender Impact on Churn | Negligible (~equal across Male & Female) |
+The end-to-end pipeline covers:
+- Exploratory Data Analysis and Feature Engineering
+- Training and comparing multiple regression models
+- Deploying the best model as an interactive Streamlit web app
 
 ---
 
-## Dashboard Insights
+## Model Performance
 
-### Contract Type
-Month-to-month contract holders show the highest churn rate. Customers on one-year or two-year contracts demonstrate significantly better retention — confirming that **contract length directly correlates with loyalty**.
+| Model | R² Score | RMSE |
+|-------|----------|------|
+| Linear Regression | — | — |
+| Ridge Regression | — | — |
+| Lasso Regression | — | — |
+| Random Forest | — | — |
+| **XGBoost (Best)** | **0.6712** | **2878.57** |
 
-### Payment Method
-Electronic check users churn at the highest rate. Customers on automatic payment methods (credit card, bank transfer) tend to stay longer, suggesting **manual payment friction is a churn risk signal**.
-
-### Customer Tenure
-Churn is highest in the first 10 months. The **early customer lifecycle is the most critical retention window** — onboarding experience and early engagement directly impact long-term loyalty.
-
-### Senior Citizens
-Senior citizens churn more frequently than non-seniors, likely due to service usability or pricing sensitivity. This segment requires **targeted support and personalized communication**.
-
-### Internet Service
-Fiber optic is the dominant service (43.96%), followed by DSL (34.37%). Understanding churn within each service tier helps prioritize **service quality improvements**.
-
-### Gender
-Churn is nearly equal across male (~0.9K) and female (~0.9K) customers. **Gender is not a meaningful churn predictor** in this dataset.
-
----
-
-## Business Recommendations
-
-1. **Incentivize long-term contracts** — Offer discounts or perks to convert month-to-month customers to annual plans.
-2. **Promote auto-payment enrollment** — Nudge electronic check users toward credit card or bank transfer options.
-3. **Strengthen early onboarding** — Implement proactive engagement programs for customers in their first 10 months.
-4. **Support senior citizens** — Create a dedicated support tier with simplified interfaces and personalized assistance.
-5. **Monitor fiber optic churn** — Investigate whether service quality issues are driving churn among fiber users.
+> XGBoost outperformed all other models and was selected for deployment.
 
 ---
 
 ## Tech Stack
 
-| Tool | Purpose |
-|------|---------|
-| Power BI Desktop | Dashboard design, data modeling, interactive visuals |
-| DAX | Calculated columns, custom measures, KPIs |
-| Power Query | Data transformation and ETL pipeline |
-| CSV Dataset | Telco Customer Churn (Kaggle) |
+| Layer | Tools |
+|-------|-------|
+| Language | Python 3.8+ |
+| Data Processing | Pandas, NumPy |
+| Visualization | Matplotlib, Seaborn |
+| Machine Learning | XGBoost, Scikit-Learn |
+| Deployment | Streamlit |
+| Model Persistence | Joblib |
 
 ---
 
-## Project Files
+## Project Structure
 
-| File | Description |
-|------|-------------|
-| `TelecomChurnDashboard.pbix` | Full Power BI report with data, visuals, and model |
-| `TelecomChurnDashboard.pbit` | Power BI template — load your own data |
-| `Telecom Churn Analysis Dashboard.png` | High-resolution dashboard screenshot |
+```text
+black-friday-purchase-prediction/
+│
+├── app.py                                          # Streamlit web application
+├── BlackFriday EDA And Feature Engineering.ipynb   # EDA, feature engineering & model training
+├── purchase_prediction_model_xgb.pkl               # Serialized XGBoost model
+├── train.csv                                       # Training dataset (features + target)
+├── test.csv                                        # Test dataset (features only)
+└── README.md                                       # Project documentation
+```
+
+---
+
+## Dataset
+
+The dataset contains retail sales transactions with the following features:
+
+**Customer Demographics**
+- `Gender`, `Age`, `Marital_Status`, `Occupation`
+- `City_Category`, `Stay_In_Current_City_Years`
+
+**Product Details**
+- `Product_Category_1`, `Product_Category_2`, `Product_Category_3`
+
+**Target Variable**
+- `Purchase` — amount spent (in INR)
+
+> Source: [Black Friday Dataset — Kaggle](https://www.kaggle.com/datasets/mehdidag/black-friday)  
+> Total Records: 550,000+
 
 ---
 
 ## Getting Started
 
+**1. Clone the repository**
+
 ```bash
-# 1. Clone the repository
-git clone https://github.com/Shubham1919284/Telecom-Churn-Dashboard.git
-cd Telecom-Churn-Dashboard
+git clone https://github.com/Shubham1919284/black-friday-purchase-prediction.git
+cd black-friday-purchase-prediction
 ```
 
-**To explore the dashboard:**
-- Open `TelecomChurnDashboard.pbix` in Power BI Desktop
+**2. Install dependencies**
 
-**To use with your own data:**
-- Open `TelecomChurnDashboard.pbit` (template)
-- Load a dataset matching the original schema
-- Power BI will auto-refresh all visuals
+```bash
+pip install streamlit numpy pandas xgboost scikit-learn joblib matplotlib seaborn
+```
+
+**3. Run the Streamlit app**
+
+```bash
+streamlit run app.py
+```
+
+**4. Open in browser**
+
+```
+http://localhost:8501
+```
+
+---
+
+## How It Works
+
+1. User inputs customer details (gender, age, city, occupation) and product categories via the Streamlit UI
+2. Inputs are encoded and preprocessed to match the training pipeline
+3. The pre-trained XGBoost model (`purchase_prediction_model_xgb.pkl`) generates a real-time prediction
+4. Predicted purchase amount is displayed instantly on screen
 
 ---
 
 ## Future Enhancements
 
-- [ ] Add predictive churn scoring using Python/R integration within Power BI
-- [ ] Deploy to Power BI Service for cloud sharing and scheduled refresh
-- [ ] Add slicers for region, customer segment, and plan type
-- [ ] Connect to live SQL Server or Azure database for real-time analysis
+- [ ] Add SHAP-based feature importance visualization for model explainability
+- [ ] Extend to classification (high / medium / low spender segmentation)
+- [ ] Deploy on Streamlit Cloud for public access
+- [ ] Add a data upload feature so users can run batch predictions via CSV
 
 ---
 
